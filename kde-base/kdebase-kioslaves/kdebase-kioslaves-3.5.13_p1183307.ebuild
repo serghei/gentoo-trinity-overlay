@@ -11,13 +11,14 @@ HOMEPAGE="http://trinity.pearsoncomputing.net/"
 SRC_URI="http://www.thel.ro/distfiles/kdebase-3.5.13_p1183307.tar.bz2"
 LICENSE="GPL-2 LGPL-2"
 KEYWORDS="~x86"
-IUSE="openexr"
+IUSE="sasl openexr"
 
 SLOT="3.5"
 
 RDEPEND="kde-base/kdelibs
     x11-libs/libXcursor
-    openexr? ( >=media-libs/openexr-1.2.2-r2 )"
+    openexr? ( >=media-libs/openexr-1.2.2-r2 )
+    sasl? ( dev-libs/cyrus-sasl )"
 
 DEPEND="${RDEPEND}
     dev-util/cmake
@@ -30,6 +31,7 @@ src_configure() {
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KIOSLAVES=ON
 		-DWITH_XCURSOR=ON
+		$(cmake-utils_use_with sasl SASL)
 		$(cmake-utils_use_with openexr OPENEXR)
 	)
 

@@ -15,7 +15,7 @@ KEYWORDS="~x86"
 SLOT="3.5"
 
 IUSE=""
-PLUGINS=""
+PLUGINS="history"
 PROTOCOLS="yahoo"
 IUSE="${IUSE} ${PLUGINS} ${PROTOCOLS}"
 
@@ -30,6 +30,7 @@ src_configure() {
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KOPETE=ON
 		$(cmake-utils_use yahoo BUILD_KOPETE_PROTOCOL_YAHOO)
+		$(cmake-utils_use history BUILD_KOPETE_PLUGIN_HISTORY)
 	)
 
 	cmake-utils_src_configure

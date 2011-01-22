@@ -11,10 +11,12 @@ HOMEPAGE="http://trinity.pearsoncomputing.net/"
 SRC_URI="http://www.thel.ro/distfiles/kdebase-3.5.13_p1183307.tar.bz2"
 LICENSE="GPL-2 LGPL-2"
 KEYWORDS="~x86"
+IUSE="pam"
 
 SLOT="3.5"
 
-RDEPEND="kde-base/kdelibs:${SLOT}"
+RDEPEND="kde-base/kdelibs:${SLOT}
+    pam? ( virtual/pam )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/kdebase
@@ -23,6 +25,7 @@ src_configure() {
 	mycmakeargs=(
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KCHECKPASS=ON
+		$(cmake-utils_use_with pam PAM)
 	)
 
 	cmake-utils_src_configure
