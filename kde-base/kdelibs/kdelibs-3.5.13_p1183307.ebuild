@@ -11,7 +11,7 @@ HOMEPAGE="http://trinity.pearsoncomputing.net/"
 SRC_URI="http://www.thel.ro/distfiles/${P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2"
 KEYWORDS="~x86"
-IUSE="alsa arts cups jpeg2k openexr spell tiff lua"
+IUSE="alsa arts avahi cups jpeg2k openexr spell tiff lua"
 
 SLOT="3.5"
 
@@ -21,7 +21,7 @@ RDEPEND="kde-base/tqtinterface
     >=media-libs/freetype-2
     media-libs/libart_lgpl
     net-dns/libidn
-    net-dns/avahi[qt3]
+    avahi? ( net-dns/avahi[qt3] )
     alsa? ( media-libs/alsa-lib )
     arts? ( >=kde-base/arts-3.5.13 )
     cups? ( >=net-print/cups-1.1.19 )
@@ -45,6 +45,7 @@ src_configure() {
 		-DWITH_LIBART=ON
 		$(cmake-utils_use_with alsa ALSA)
 		$(cmake-utils_use_with arts ARTS)
+		$(cmake-utils_use_with avahi AVAHI)
 		$(cmake-utils_use_with cups CUPS)
 		$(cmake-utils_use_with jpeg2k JASPER)
 		$(cmake-utils_use_with openexr OPENEXR)
