@@ -25,8 +25,8 @@ S=${WORKDIR}/${PN}
 
 src_configure() {
 	mycmakeargs=(
-	    $(cmake-utils_use_with qt3)
-	    $(cmake-utils_use_with qt4)
+	    $(cmake-utils_use qt3 USE_QT3)
+	    $(cmake-utils_use qt4 USE_QT4)
 	 )
 
 	 cmake-utils_src_configure

@@ -11,7 +11,7 @@ HOMEPAGE="http://trinity.pearsoncomputing.net/"
 SRC_URI="http://www.thel.ro/distfiles/kdebase-3.5.13_p1183307.tar.bz2"
 LICENSE="GPL-2 LGPL-2"
 KEYWORDS="~x86"
-IUSE="xscreensaver"
+IUSE="pam xscreensaver"
 
 SLOT="3.5"
 
@@ -30,6 +30,7 @@ src_configure() {
 	mycmakeargs=(
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KDESKTOP=ON
+		$(cmake-utils_use_with pam PAM)
 		$(cmake-utils_use_with xscreensaver XSCREENSAVER)
 	)
 

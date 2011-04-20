@@ -1,0 +1,76 @@
+diff -u -r qt-x11-free-3.3.8b.orig/include/qobject.h qt-x11-free-3.3.8b/include/qobject.h
+--- qt-x11-free-3.3.8b.orig/include/qobject.h	2008-01-15 21:09:13.000000000 +0200
++++ qt-x11-free-3.3.8b/include/qobject.h	2011-03-15 00:26:15.163711781 +0200
+@@ -101,8 +101,11 @@
+ 
+     QObject           *child( const char *objName, const char *inheritsClass = 0, bool recursiveSearch = TRUE ); //### const in 4.0
+     const QObjectList *children() const { return childObjects; }
++    QObjectList childrenListObject();
++    const QObjectList childrenListObject() const;
+ 
+     static const QObjectList *objectTrees();
++    static const QObjectList objectTreesListObject();
+ 
+     QObjectList	      *queryList( const char *inheritsClass = 0,
+ 				  const char *objName = 0,
+diff -u -r qt-x11-free-3.3.8b.orig/src/kernel/qobject.cpp qt-x11-free-3.3.8b/src/kernel/qobject.cpp
+--- qt-x11-free-3.3.8b.orig/src/kernel/qobject.cpp	2008-01-15 21:09:13.000000000 +0200
++++ qt-x11-free-3.3.8b/src/kernel/qobject.cpp	2011-03-15 00:26:15.164711784 +0200
+@@ -360,6 +360,30 @@
+     }
+ }
+ 
++/*! \internal
++    TQt compatibility function
++*/
++QObjectList QObject::childrenListObject() {
++	if (children()) return *(children());
++	else return QObjectList();
++}
++
++/*! \internal
++    TQt compatibility function
++*/
++const QObjectList QObject::childrenListObject() const {
++	if (children()) return *(children());
++	else return QObjectList();
++}
++
++/*! \internal
++    TQt compatibility function
++*/
++const QObjectList QObject::objectTreesListObject() {
++	if (objectTrees()) return *(objectTrees());
++	else return QObjectList();
++}
++
+ 
+ /*****************************************************************************
+   QObject member functions
+diff -u -r qt-x11-free-3.3.8b.orig/src/kernel/qobject.h qt-x11-free-3.3.8b/src/kernel/qobject.h
+--- qt-x11-free-3.3.8b.orig/src/kernel/qobject.h	2008-01-15 21:09:13.000000000 +0200
++++ qt-x11-free-3.3.8b/src/kernel/qobject.h	2011-03-15 00:26:15.165711784 +0200
+@@ -101,8 +101,11 @@
+ 
+     QObject           *child( const char *objName, const char *inheritsClass = 0, bool recursiveSearch = TRUE ); //### const in 4.0
+     const QObjectList *children() const { return childObjects; }
++    QObjectList childrenListObject();
++    const QObjectList childrenListObject() const;
+ 
+     static const QObjectList *objectTrees();
++    static const QObjectList objectTreesListObject();
+ 
+     QObjectList	      *queryList( const char *inheritsClass = 0,
+ 				  const char *objName = 0,
+diff -u -r qt-x11-free-3.3.8b.orig/src/tools/qglobal.h qt-x11-free-3.3.8b/src/tools/qglobal.h
+--- qt-x11-free-3.3.8b.orig/src/tools/qglobal.h	2008-01-15 21:09:13.000000000 +0200
++++ qt-x11-free-3.3.8b/src/tools/qglobal.h	2011-03-15 00:28:11.221711757 +0200
+@@ -41,7 +41,7 @@
+ #ifndef QGLOBAL_H
+ #define QGLOBAL_H
+ 
+-#define QT_VERSION_STR   "3.3.8b"
++#define QT_VERSION_STR   "3.3.8c"
+ /*
+    QT_VERSION is (major << 16) + (minor << 8) + patch.
+  */

@@ -18,6 +18,7 @@ SLOT="3.5"
 RDEPEND="x11-libs/libXext
     x11-libs/libXrender
     x11-libs/libXfixes
+    x11-libs/libXext
     xcomposite? ( x11-libs/libXcomposite )"
 
 DEPEND="${RDEPEND}"
@@ -29,6 +30,10 @@ src_configure() {
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KWIN=ON
 		$(cmake-utils_use_with xcomposite XCOMPOSITE)
+		-DWITH_XRENDER=ON
+		-DWITH_XFIXES=ON
+		-DWITH_XDAMAGE=ON
+		-DWITH_XEXT=ON
 	)
 
 	cmake-utils_src_configure

@@ -25,6 +25,7 @@ S=${WORKDIR}/kdebase
 src_configure() {
 	mycmakeargs=(
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
+		-DWITH_XFIXES=ON
 		-DBUILD_KLIPPER=ON
 	)
 

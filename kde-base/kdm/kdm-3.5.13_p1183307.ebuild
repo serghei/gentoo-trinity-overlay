@@ -19,6 +19,7 @@ RDEPEND="kde-base/kdelibs:${SLOT}
 	pam? ( kde-base/kdebase-pam )
 	x11-apps/xinit
 	x11-apps/xmessage
+	x11-libs/libXdmcp
 	sys-apps/dbus"
 DEPEND="${RDEPEND}"
 
@@ -29,6 +30,7 @@ src_configure() {
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KDM=ON
 		-DWITH_SHADOW=ON
+		-DWITH_XDMCP=ON
 		$(cmake-utils_use_with pam PAM )
 	)
 

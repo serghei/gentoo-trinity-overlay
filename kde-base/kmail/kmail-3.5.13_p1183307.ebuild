@@ -31,6 +31,7 @@ src_configure() {
 	mycmakeargs=(
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KMAIL=ON
+		-DBUILD_PLUGINS=ON
 	)
 
 	cmake-utils_src_configure
