@@ -15,7 +15,8 @@ IUSE=""
 
 SLOT="3.5"
 
-RDEPEND="kde-base/kdelibs:${SLOT}"
+RDEPEND="kde-base/kdelibs:${SLOT}
+    dev-libs/dbus-1-tqt"
 
 DEPEND="${RDEPEND}
     dev-util/cmake
