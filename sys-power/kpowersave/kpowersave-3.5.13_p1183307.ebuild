@@ -17,7 +17,7 @@ SLOT="3.5"
 
 RDEPEND="kde-base/kdelibs:${SLOT}
     >=sys-apps/hal-0.5.4
-    dev-libs/dbus-qt3-old:0.70
+    dev-libs/dbus-tqt
     x11-libs/libXScrnSaver
     x11-libs/libXext
     x11-libs/libXtst"

@@ -15,7 +15,7 @@ KEYWORDS="~x86"
 SLOT="3.5"
 
 RDEPEND="kde-base/kdelibs:${SLOT}
-    dev-libs/dbus-qt3-old
+    dev-libs/dbus-tqt
     sys-apps/hal"
 DEPEND="${RDEPEND}"
 
