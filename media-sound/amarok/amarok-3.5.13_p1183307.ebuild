@@ -11,7 +11,7 @@ HOMEPAGE="http://amarok.kde.org/"
 SRC_URI="http://www.thel.ro/distfiles/${P}.tar.bz2"
 LICENSE="GPL-2"
 KEYWORDS="~x86"
-IUSE="+xine konqsidebar visualization doc"
+IUSE="+xine konqsidebar translations visualization doc"
 
 SLOT="3.5"
 
@@ -33,6 +33,7 @@ src_configure() {
 		-DWITH_XINE=ON
 		$(cmake-utils_use_with konqsidebar KONQSIDEBAR)
 		$(cmake-utils_use_with visualization LIBVISUAL)
+		$(cmake-utils_use translations BUILD_TRANSLATIONS)
 		$(cmake-utils_use doc BUILD_DOC)
 	)
 
