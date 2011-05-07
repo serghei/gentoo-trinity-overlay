@@ -11,7 +11,7 @@ HOMEPAGE="http://en.opensuse.org/Projects/KNetworkManager"
 SRC_URI="http://www.thel.ro/distfiles/${P}.tar.bz2"
 LICENSE="GPL-2"
 KEYWORDS="~x86"
-IUSE=""
+IUSE="openvpn"
 
 SLOT="3.5"
 
@@ -27,6 +27,7 @@ S=${WORKDIR}/${PN}
 src_configure() {
 	mycmakeargs=(
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
+		$(cmake-utils_use_with openvpn OPENVPN)
 	)
 
 	cmake-utils_src_configure

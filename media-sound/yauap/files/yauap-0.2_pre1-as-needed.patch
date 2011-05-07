@@ -1,0 +1,29 @@
+diff -ru yauap-0.2pre1.old/Makefile yauap-0.2pre1/Makefile
+--- yauap-0.2pre1.old/Makefile	2007-06-02 20:43:51.000000000 +0200
++++ yauap-0.2pre1/Makefile	2007-06-02 20:45:01.000000000 +0200
+@@ -7,13 +7,13 @@
+ CFLAGS += -g3  -Wall
+ #glib 2
+ CFLAGS += `pkg-config --cflags glib-2.0`
+-LDFLAGS += `pkg-config --libs glib-2.0` 
++LIBS = `pkg-config --libs glib-2.0` 
+ #gstreamer
+ CFLAGS += `pkg-config --cflags gstreamer-0.10`
+-LDFLAGS += `pkg-config --libs gstreamer-0.10` 
++LIBS += `pkg-config --libs gstreamer-0.10` 
+ #dbus
+ CFLAGS += `pkg-config --cflags dbus-1`
+-LDFLAGS += `pkg-config --libs dbus-1` -ldbus-glib-1
++LIBS += `pkg-config --libs dbus-1` -ldbus-glib-1
+ 
+ 
+ 
+@@ -35,7 +35,7 @@
+ 
+ 
+ yauap:  yauap-service-glue.h $(OBJS)
+-	$(CC) $(LDFLAGS) -o $@ $(OBJS)
++	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+ 
+ 
+ clean:
