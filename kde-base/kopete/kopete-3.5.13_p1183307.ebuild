@@ -16,11 +16,15 @@ SLOT="3.5"
 
 IUSE=""
 PLUGINS="history"
-PROTOCOLS="yahoo"
+PROTOCOLS="yahoo jabber jingle gadu meanwhile"
 IUSE="${IUSE} ${PLUGINS} ${PROTOCOLS}"
 
 
-RDEPEND="kde-base/kdelibs:${SLOT}"
+RDEPEND="kde-base/kdelibs:${SLOT}
+    jingle? ( >=media-libs/speex-1.1.6 )
+    gadu? ( net-libs/libgadu )
+    meanwhile? ( net-libs/meanwhile )"
+
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/kdenetwork
@@ -29,7 +33,11 @@ src_configure() {
 	mycmakeargs=(
 		-DCMAKE_INSTALL_RPATH=/usr/kde/3.5/lib
 		-DBUILD_KOPETE=ON
+		$(cmake-utils_use_with jingle JINGLE)
 		$(cmake-utils_use yahoo BUILD_KOPETE_PROTOCOL_YAHOO)
+		$(cmake-utils_use jabber BUILD_KOPETE_PROTOCOL_JABBER)
+		$(cmake-utils_use gadu BUILD_KOPETE_PROTOCOL_GADU)
+		$(cmake-utils_use meanwhile BUILD_KOPETE_PROTOCOL_MEANWHILE)
 		$(cmake-utils_use history BUILD_KOPETE_PLUGIN_HISTORY)
 	)
 

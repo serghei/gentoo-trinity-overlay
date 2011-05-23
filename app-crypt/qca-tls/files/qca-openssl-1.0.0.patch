@@ -1,0 +1,17 @@
+Adjust for stricter typing in OpenSSL 1.0.0.
+
+2010-07-19 Martin von Gagern
+
+Index: qca-tls-1.0/qca-tls.cpp
+===================================================================
+--- qca-tls-1.0.orig/qca-tls.cpp
++++ qca-tls-1.0/qca-tls.cpp
+@@ -953,7 +953,7 @@ public:
+ 	RSAKeyContext *key;
+ 
+ 	SSL *ssl;
+-	SSL_METHOD *method;
++	const SSL_METHOD *method;
+ 	SSL_CTX *context;
+ 	BIO *rbio, *wbio;
+ 	CertContext cc;
